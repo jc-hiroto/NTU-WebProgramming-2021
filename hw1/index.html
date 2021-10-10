@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6e0dda708f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Online Album</title>
 </head>
@@ -17,20 +18,52 @@
         </div>
         <div class="flex-row">
             <div id="sb-container">
-                <button class="sb-btn">Photos</button>
-                <button class="sb-btn">Albums</button>
-                <button class="sb-btn">Favorites</button>
-                <button class="sb-btn">Tags</button>
-                <button class="sb-btn">Setting</button>
-                <button class="sb-btn">About</button>
+                <button class="sb-btn">
+                    <i class="fas fa-image sb-btn-logo"></i>
+                    <p>Photos</p>
+                </button>
+                <button class="sb-btn">
+                    <i class="fas fa-images sb-btn-logo"></i>
+                    <p>Albums</p>
+                </button>
+                <button class="sb-btn">
+                    <i class="fas fa-tags sb-btn-logo"></i>
+                    <p>Tags</p>
+                </button>
+                <button class="sb-btn">
+                    <i class="fas fa-heart sb-btn-logo"></i>
+                    <p>Favorites</p>
+                </button>
+                <button class="sb-btn">
+                    <i class="fas fa-sliders-h sb-btn-logo"></i>
+                    <p>Setting</p>
+                </button>
+                <button class="sb-btn">
+                    <i class="fas fa-info-circle sb-btn-logo"></i>
+                    <p>About</p>
+                </button> 
             </div>
             <div class="flex-col" style="padding: 0;">
-                <div class="flex-row" style="align-items: center;">
+                <div class="flex-row">
                     <img class="ctrl-btn" src="img/left-arrow.png">
                     <img src="img/cover.png" class="img-container">
                     <img class="ctrl-btn" src="img/right-arrow.png">
+                    <div class="flex-col" style="flex-grow: 1;">
+                    <div class="info-container">
+                        <i class="far fa-comment-alt fa-2x fa-pull-left"></i>
+                    </div>
+                    <div class="info-container"s>
+                        <i class="fas fa-chart-area fa-2x fa-pull-left"></i>
+                    </div>
+                    </div>
                 </div>
-                <div class="flex-row" style="align-items: center; margin-top: 1vh;">
+                <div class="img-selector-container">
+                    <img class="img-selector" src="img/cover.png">
+                    <img class="img-selector" src="img/cover.png">
+                    <img class="img-selector" src="img/cover.png">
+                    <img class="img-selector" src="img/cover.png">
+                    <img class="img-selector" src="img/cover.png">
+                    <img class="img-selector" src="img/cover.png">
                     <img class="img-selector" src="img/cover.png">
                 </div>
             </div>
