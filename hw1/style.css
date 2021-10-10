@@ -18,6 +18,7 @@
 .logo:hover {
     transform: rotate(30deg);
     margin-left: 10px;
+    cursor: pointer;
 }
 
 #sb-container {
@@ -27,6 +28,14 @@
     border-radius: 0.2vw;
     background-color: rgb(243, 243, 243);
     padding: 1vw;
+    margin-left: -150px;
+    padding-right: 40px;
+    padding-left: 2vw;
+    transition: ease 0.2s;
+}
+#sb-container:hover {
+    margin-left: -30px;
+    padding-right: 10px;
 }
 .flex-col {
     display: flex;
@@ -46,7 +55,7 @@
     padding: 2vw;
 }
 .img-container {
-    flex-grow: 1;
+    flex-grow: 0;
     border-radius: 0.2vw;
     width: 80%;
     margin: 2px;
@@ -56,23 +65,43 @@
     box-shadow: 0 5px 5px rgba(158, 123, 123, 0.3);
     transform: scale(1.01);
 }
+.img-container:active {
+    opacity: 0.5;
+}
+.img-selector {
+    flex-grow: 0;
+    border-radius: 0.2vw;
+    width: 10%;
+    margin: 20px 20px 0 20px;
+    transition: ease 0.3s;
+}
 .item {
     flex-grow: 1;
 }
 .sb-btn {
     width: 100%;
     max-height: 5vh;
-    align-items: center;
+    text-align: justify;
     background-color: rgb(161, 161, 161);
     border-radius: 0.2vw;
-    padding: 1vh;
+    padding: 1vh 1vh 1vh 1vh;
     font-size: 100%;
-    font-weight: 700;
-    color: navy;
+    font-weight: 500;
+    color: rgb(46, 46, 46);
     border: none;
     cursor: pointer;
     width: auto;
-    margin: 2px;
+    margin: 5px 3px 5px 3px;
+    transition: ease 0.1s;
+}
+.sb-btn:hover {
+    background-color: rgb(123, 145, 158);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 5px 10px rgba(123, 123, 123, 0.5);
+}
+.sb-btn:active {
+    transform: scale(0.99);
+    box-shadow: 0 5px 5px rgba(123, 123, 123, 0.3);
 }
 .ctrl-btn {
     max-height: 3vh;
@@ -86,6 +115,9 @@
 .ctrl-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+.ctrl-btn:active {
+    background-color: rgb(178, 212, 223);
 }
 #sidebar {
     margin: 2vw;
