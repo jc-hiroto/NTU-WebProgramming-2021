@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6e0dda708f.js" crossorigin="anonymous"></script>
+  <title>Digital Photo Album</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+</head>
+
+<body>
+  <div class="flex-col">
+    <div class="flex-row" style="align-items: center;">
+      <img src="img/leaf.png" alt="leaf" class="logo">
+      <h1 class="title">Photos</h1>
+    </div>
+    <div class="flex-row">
+      <div id="sb-container">
+        <button class="sb-btn">
+          <i class="fas fa-image sb-btn-logo"></i>
+          <p>Photos</p>
+        </button>
+        <button class="sb-btn">
+          <i class="fas fa-images sb-btn-logo"></i>
+          <p>Albums</p>
+        </button>
+      </div>
+      <div class="flex-col" style="padding: 0;">
+        <div class="flex-row">
+          <img class="ctrl-btn" src="img/left-arrow.png" onclick="prev_image()">
+          <div class="img-bg">
+            <img id="main-image" src="img/cover.png" class="img-container">
+            <p id="image-index">1/1</p>
+          </div>
+          <img class="ctrl-btn" src="img/right-arrow.png" onclick="next_image()">
+          <div class="flex-col" style="flex-grow: 1;">
+            <div class="info-container">
+              <i class="far fa-comment-alt fa-2x fa-pull-left"></i>
+              <h3 id="image-title"></h3>
+            </div>
+            <div class="info-container" s>
+              <i class="fas fa-chart-area fa-2x fa-pull-left"></i>
+              <h4 id="image-description"></h4>
+            </div>
+          </div>
+        </div>
+        <div class="img-selector-container">
+          <li id="image-list"></li>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row">
+      <p id="light-comment" class=" item">Made with 💖 by jc-hiroto</p>
+      <p id="light-comment" class="item">wp1101-hw1-b07505032</p>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
