@@ -150,6 +150,24 @@
     transform: scale(0.99);
     box-shadow: 0 5px 5px rgba(123, 123, 123, 0.3);
 }
+.sb-btn-selected {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-height: 5vh;
+    text-align: justify;
+    border-radius: 0.2vw;
+    padding: 1vh 1vh 1vh 1vh;
+    font-size: 100%;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    margin: 5px 3px 5px 3px;
+    transition: ease 0.1s;
+    background-color: rgb(123, 145, 158);
+    color: rgb(255, 255, 255);
+}
 .ctrl-btn {
     max-height: 3vh;
     border-radius: 50%;

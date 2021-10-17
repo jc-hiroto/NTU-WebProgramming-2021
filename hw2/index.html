@@ -13,18 +13,26 @@
 <body>
   <div class="flex-col">
     <div class="flex-row" style="align-items: center;">
-      <img src="img/leaf.png" alt="leaf" class="logo">
+      <img src="img/leaf.png" alt="leaf" class="logo" onclick="home()">
       <h1 class="title">Photos</h1>
     </div>
     <div class="flex-row">
       <div id="sb-container">
-        <button class="sb-btn">
+        <div class="flex-row" style="align-items: center;">
+          <i class="fas fa-images sb-btn-logo" style="padding-left: 10px;"></i>
+          <h3>Albums</h3>
+        </div>
+        <button id="Memes 1" class="sb-btn" onclick="update_album(this.id)">
           <i class="fas fa-image sb-btn-logo"></i>
-          <p>Photos</p>
+          <p>Memes 1</p>
         </button>
-        <button class="sb-btn">
-          <i class="fas fa-images sb-btn-logo"></i>
-          <p>Albums</p>
+        <button id="Memes 2" class="sb-btn" onclick="update_album(this.id)">
+          <i class="fas fa-image sb-btn-logo"></i>
+          <p>Memes 2</p>
+        </button>
+        <button id="Unknown" class="sb-btn" onclick="update_album(this.id)">
+          <i class="fas fa-image sb-btn-logo"></i>
+          <p>Unknown</p>
         </button>
       </div>
       <div class="flex-col" style="padding: 0;">
