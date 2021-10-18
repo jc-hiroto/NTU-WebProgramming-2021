@@ -98,7 +98,7 @@ function update_selector() {
         image_item.className = "img-selector"
         image_item.id = "img-s-"+i;
         image_item.addEventListener("click", function() {
-            target_image_index = this.id.split("-")[2];
+            target_image_index = parseInt(this.id.split("-")[2], 10);
             if (target_image_index != image_index) {
                 image_index = target_image_index;
                 refresh_image();
