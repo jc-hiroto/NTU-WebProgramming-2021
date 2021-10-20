@@ -175,6 +175,17 @@ input[type='checkbox'] {
     outline: none;
 }
 
+.todo-app__view-buttons button:hover {
+    background: rgb(107, 107, 107);
+    color: white;
+}
+
+.todo-app__view-button--active {
+    background: rgb(65, 65, 65);
+    color: white;
+    cursor: default;
+}
+
 .todo-app__clean {
     vertical-align: middle;
 }
