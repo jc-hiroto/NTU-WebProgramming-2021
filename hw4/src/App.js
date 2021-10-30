@@ -6,13 +6,7 @@ import Footer from './components/Footer';
 
 
 function TodoApp() {
-  const todos_default = [
-    {
-      id: 0,
-      title: 'Learn React',
-      completed: false
-    }
-  ];
+  const todos_default = [];
   const [todos, setTodos] = useState(todos_default);
   const [filterMode, setFilterMode] = useState("all");
   const addTodo = (title) => {
