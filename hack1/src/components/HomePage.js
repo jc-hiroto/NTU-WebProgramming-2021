@@ -13,22 +13,29 @@ import './css/HomePage.css';
 const HomePage = ({startGameOnClick, mineNumOnChange, boardSizeOnChange, mineNum, boardSize /* -- something more... -- */}) => {
     const [showPanel, setShowPanel] = useState(false);      // A boolean variable. If true, the controlPanel will show.
     const [error, setError] = useState(false);              // A boolean variable. If true, means that the numbers of mines and the board size are invalid to build a game.
-
+    const checkError = () => {
+      if(mineNum > boardSize*boardSize) {
+        setError(true);
+      }
+      else{
+        setError(false);
+      }
+    }
     const renderControlPanel = () => {
-        if (showPanel) {
+      if (showPanel) {
             return (
                 <div className="controlWrapper">
-                    <div className="error">{error ? 'ERROR:' : ''}</div>
+                    <div className="error" style={{color: 'darkred'}}>{error ? 'ERROR: Mines number and board size are invalid!' : ''}</div>
                     <div className="controlPanel">
                         <div className="controlCol">
                             <div className="controlTitle">Mines Number</div>
-                            <input type="range" min="1" max="50" value={mineNum} onChange={mineNumOnChange} />
-                            <p className="controlNum">{mineNum}</p>
+                            <input id="minenum-slider" type="range" min="1" max="50" defaultValue={mineNum} onChange={() => { mineNumOnChange(); checkError();}} />
+                            <p className="controlNum" style={error? {color: 'darkred'}:{}}>{mineNum}</p>
                         </div>
                         <div className="controlCol">
                             <div className="controlTitle">Board Size (nxn)</div>
-                            <input type="range" min="1" max="20" value={boardSize} onChange={boardSizeOnChange} />
-                            <p className="controlNum">{boardSize}</p>
+                            <input id="boardsize-slider" type="range" min="1" max="20" defaultValue={boardSize} onChange={() => { boardSizeOnChange(); checkError();}} />
+                            <p className="controlNum" style={error? {color: 'darkred'}:{}}>{boardSize}</p>
                         </div>
                     </div>
                 </div>
@@ -38,13 +45,11 @@ const HomePage = ({startGameOnClick, mineNumOnChange, boardSizeOnChange, mineNum
         }
     }  
 
-    
-
     return(
       <div className="mineSweeper">
       <div className = 'HomeWrapper'>
           <p className = 'title'>MineSweeper</p>
-          <button className = 'btn' onClick={startGameOnClick}>Start Game</button>
+          <button className = 'btn' onClick={error? null:startGameOnClick}>Start Game</button>
           <div className = 'controlContainer'>
             <button className = 'btn' onClick={() => setShowPanel(!showPanel)}>Difficulty Adjustment</button>
             {renderControlPanel()}

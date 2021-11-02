@@ -19,7 +19,7 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     const [board, setBoard] = useState([]);                     // An 2-dimentional array. It is used to store the board.
     const [nonMineCount, setNonMineCount] = useState(0);        // An integer variable to store the number of cells whose value are not '💣'.
     const [mineLocations, setMineLocations] = useState([]);     // An array to store all the coordinate of '💣'.
-    const [gameOver, setGameOver] = useState(false);            // A boolean variable. If true, means you lose the game (Game over).
+    const [gameOver, setGameOver] = useState(0);            // A boolean variable. If true, means you lose the game (Game over).
     const [remainFlagNum, setRemainFlagNum] = useState(10);      // An integer variable to store the number of remain flags.
     const [win, setWin] = useState(false);                      // A boolean variable. If true, means that you win the game.
 
@@ -33,13 +33,13 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
         setBoard(createBoard(boardSize, mineNum).board);
         setMineLocations(createBoard(boardSize, mineNum).mineLocations);
         setNonMineCount(boardSize * boardSize - mineNum);
+        setRemainFlagNum(mineNum);
+        setGameOver(false);
+        setWin(false);
     }
 
     const restartGame = () => {
         freshBoard();
-        setRemainFlagNum(10);
-        setGameOver(false);
-        setWin(false);
     }
 
     // On Right Click / Flag Cell
@@ -79,10 +79,10 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
         setBoard(r.board);
         setNonMineCount(r.newNonMinesCount);
         setGameOver(r.gameOver);
-        console.log(nonMineCount);
-        if(nonMineCount === 0) {
+        if(nonMineCount === 1 && board[x][y].value !== '💣') {
             setWin(true);
         }
+        console.log(nonMineCount);
         {/* -- TODO 4-1 -- */}
         {/* Reveal the cell */}
         {/* Useful Hint: The function in reveal.js may be useful. You should consider if the cell you want to reveal is a location of mines or not. */}
@@ -99,8 +99,8 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     }
     return(
         <div className = 'boardPage' >
-            {modalRenderer()}
             <div className = 'boardWrapper' >
+            {modalRenderer()}
                 <div className = 'boardContainer'>
                     <Dashboard remainFlagNum={remainFlagNum} gameOver={gameOver}/>
                     {board.map((row, x) => {

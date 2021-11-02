@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import './MineSweeper.css';
 import Board from '../components/Board'
 import HomePage from '../components/HomePage'
+import createBoard from '../util/createBoard';
 
 const MineSweeper = () => {
     const [startGame, setStartGame] = useState(false);      // A boolean variable. If true, show the Board, else show the HomePage.
@@ -24,11 +25,11 @@ const MineSweeper = () => {
     }
     {/* -- TODO 6-2 -- */}
     const mineNumOnChange = () => {
-        
+        setMineNum(document.getElementById("minenum-slider").value);
     }
     {/* -- TODO 6-2 -- */}
     const boardSizeOnChange = () => {
-        
+        setBoardSize(document.getElementById("boardsize-slider").value);
     }
     {/* -- TODO 5-2 -- */}
     const backToHomeOnClick = () => {
@@ -42,7 +43,7 @@ const MineSweeper = () => {
             )
     } else {
         return (
-            <HomePage startGameOnClick={startGameOnClick} mineNumOnChange={mineNumOnChange} boardSizeOnChange={boardSizeOnChange} backToHomeOnClick={backToHomeOnClick} />
+            <HomePage mineNum={mineNum} boardSize={boardSize} startGameOnClick={startGameOnClick} mineNumOnChange={mineNumOnChange} boardSizeOnChange={boardSizeOnChange} backToHomeOnClick={backToHomeOnClick} />
         )
     }
 }
