@@ -18,20 +18,35 @@ const HomePage = ({startGameOnClick, mineNumOnChange, boardSizeOnChange, mineNum
         if (showPanel) {
             return (
                 <div className="controlWrapper">
-                  
+                    <div className="error">{error ? 'ERROR:' : ''}</div>
+                    <div className="controlPanel">
+                        <div className="controlCol">
+                            <div className="controlTitle">Mines Number</div>
+                            <input type="range" min="1" max="50" value={mineNum} onChange={mineNumOnChange} />
+                            <p className="controlNum">{mineNum}</p>
+                        </div>
+                        <div className="controlCol">
+                            <div className="controlTitle">Board Size (nxn)</div>
+                            <input type="range" min="1" max="20" value={boardSize} onChange={boardSizeOnChange} />
+                            <p className="controlNum">{boardSize}</p>
+                        </div>
+                    </div>
                 </div>
             );
+        }else{
+            return null;
         }
     }  
 
     
 
     return(
+      <div className="mineSweeper">
       <div className = 'HomeWrapper'>
           <p className = 'title'>MineSweeper</p>
           <button className = 'btn' onClick={startGameOnClick}>Start Game</button>
           <div className = 'controlContainer'>
-            <button className = 'btn' onClick={setShowPanel(true)}>Difficulty Adjustment</button>
+            <button className = 'btn' onClick={() => setShowPanel(!showPanel)}>Difficulty Adjustment</button>
             {renderControlPanel()}
           </div>
           
@@ -41,6 +56,7 @@ const HomePage = ({startGameOnClick, mineNumOnChange, boardSizeOnChange, mineNum
             {/* Reminder: The defaultValue of 'mineNum' is 10, and the defaultValue of 'boardSize' is 8. */}
             
         </div>
+      </div>
     );
 
 }

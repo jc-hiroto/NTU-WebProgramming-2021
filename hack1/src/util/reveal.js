@@ -7,14 +7,24 @@
 ****************************************************************************/
 
 export const revealed = (board, x, y, newNonMinesCount) => {
-    {/* -- TODO 4-2 -- */}
-    {/* Useful Hint: If the cell is already revealed, do nothing. */}
-    {/* Useful Hint: If the value of the cell is not 0, only show the cell value. */}
-
-    {/* -- TODO 4-2 -- */}
-    {/* Useful Hint: If the value of the cell is 0, we should try to find the value of adjacent cells until the value we found is not 0. */}
-    {/* Useful Hint: The input variables 'newNonMinesCount' and 'board' may be changed in this function. */}
-    
-    
-    return {board, newNonMinesCount};
+  board[x][y].revealed = true;
+  board[x][y].flagged = false;
+  if(board[x][y].value === "💣") {
+    console.log("You Lose!");
+    return {board, newNonMinesCount, gameOver: true};
+  }else{
+    newNonMinesCount--;
+  }
+  if(board[x][y].value === 0) {
+    for(let i = -1; i <= 1; i++) {
+      for(let j = -1; j <= 1; j++) {
+        if(x + i >= 0 && x + i < board.length && y + j >= 0 && y + j < board[0].length) {
+          if(!board[x + i][y + j].revealed && !board[x + i][y + j].flagged) {
+            newNonMinesCount = revealed(board, x + i, y + j, newNonMinesCount).newNonMinesCount;
+          }
+        }
+      }
+    }
+  }
+  return {board, newNonMinesCount, gameOver: false};
 };

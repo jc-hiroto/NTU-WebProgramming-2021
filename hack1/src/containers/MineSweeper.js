@@ -32,12 +32,12 @@ const MineSweeper = () => {
     }
     {/* -- TODO 5-2 -- */}
     const backToHomeOnClick = () => {
-        
+        setStartGame(false);
     }
     if (startGame) {
         return (
-            <div className="MineSweeper">
-                <Board mineNum={mineNum} boardSize={boardSize} />
+            <div className="mineSweeper">
+                <Board mineNum={mineNum} boardSize={boardSize} backToHome={backToHomeOnClick}/>
             </div>
             )
     } else {

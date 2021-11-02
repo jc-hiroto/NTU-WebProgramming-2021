@@ -20,7 +20,7 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     const [nonMineCount, setNonMineCount] = useState(0);        // An integer variable to store the number of cells whose value are not '💣'.
     const [mineLocations, setMineLocations] = useState([]);     // An array to store all the coordinate of '💣'.
     const [gameOver, setGameOver] = useState(false);            // A boolean variable. If true, means you lose the game (Game over).
-    const [remainFlagNum, setRemainFlagNum] = useState(0);      // An integer variable to store the number of remain flags.
+    const [remainFlagNum, setRemainFlagNum] = useState(10);      // An integer variable to store the number of remain flags.
     const [win, setWin] = useState(false);                      // A boolean variable. If true, means that you win the game.
 
     useEffect(() => {
@@ -32,12 +32,14 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     const freshBoard = () => {
         setBoard(createBoard(boardSize, mineNum).board);
         setMineLocations(createBoard(boardSize, mineNum).mineLocations);
+        setNonMineCount(boardSize * boardSize - mineNum);
     }
 
     const restartGame = () => {
-        {/* -- TODO 5-2 -- */}
-        {/* Useful Hint: freshBoard() */}
-        
+        freshBoard();
+        setRemainFlagNum(10);
+        setGameOver(false);
+        setWin(false);
     }
 
     // On Right Click / Flag Cell
@@ -50,11 +52,11 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
             var prevBoard = board.map(function(arr) {
                 return arr.slice();
             });
-            if(board[x][y].flagged) {
-                prevBoard[x][y].flagged = false;
-                setRemainFlagNum(remainFlagNum - 1);
-            }else {
+            if(!board[x][y].flagged && remainFlagNum > 0) {
                 prevBoard[x][y].flagged = true;
+                setRemainFlagNum(remainFlagNum - 1);
+            }else if(board[x][y].flagged) {
+                prevBoard[x][y].flagged = false;
                 setRemainFlagNum(remainFlagNum + 1);
             }
             setBoard(prevBoard);
@@ -70,19 +72,34 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     };
 
     const revealCell = (x, y) => {
+        if (board[x][y].flagged || board[x][y].revealed) {
+            return;
+        }
+        const r = revealed(board, x, y, nonMineCount)
+        setBoard(r.board);
+        setNonMineCount(r.newNonMinesCount);
+        setGameOver(r.gameOver);
+        console.log(nonMineCount);
+        if(nonMineCount === 0) {
+            setWin(true);
+        }
         {/* -- TODO 4-1 -- */}
         {/* Reveal the cell */}
         {/* Useful Hint: The function in reveal.js may be useful. You should consider if the cell you want to reveal is a location of mines or not. */}
         {/* Reminder: Also remember to handle the condition that after you reveal this cell then you win the game. */}
         
     };
-    if (gameOver) {
-        return (
-            <Modal restartGame = {restartGame} backToHome = {backToHome} gameOver = {gameOver} win = {win}/>
-        );
+
+    const modalRenderer = () => { 
+        if (gameOver || win) {
+            return (
+                <Modal restartGame = {restartGame} backToHome = {backToHome} gameOver = {gameOver} win = {win}/>
+            );
+        }
     }
     return(
         <div className = 'boardPage' >
+            {modalRenderer()}
             <div className = 'boardWrapper' >
                 <div className = 'boardContainer'>
                     <Dashboard remainFlagNum={remainFlagNum} gameOver={gameOver}/>
@@ -98,7 +115,7 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
                                         flagged: cell.flagged
                                     }
                                     return (
-                                        <Cell rowIdx={y} colIdx={x} detail={detail} updateFlag={updateFlag} revealCell={revealCell}/>
+                                        <Cell rowIdx={x} colIdx={y} detail={detail} updateFlag={updateFlag} revealCell={revealCell}/>
                                     )
                                 })}
                             </div>
