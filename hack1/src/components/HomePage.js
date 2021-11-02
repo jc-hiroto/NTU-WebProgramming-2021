@@ -25,17 +25,17 @@ const HomePage = ({startGameOnClick, mineNumOnChange, boardSizeOnChange, mineNum
       if (showPanel) {
             return (
                 <div className="controlWrapper">
-                    <div className="error" style={{color: 'darkred'}}>{error ? 'ERROR: Mines number and board size are invalid!' : ''}</div>
+                    <div className="error" style={{color: 'rgb(136, 0, 0)'}}>{error ? 'ERROR: Mines number and board size are invalid!' : ''}</div>
                     <div className="controlPanel">
                         <div className="controlCol">
                             <div className="controlTitle">Mines Number</div>
-                            <input id="minenum-slider" type="range" min="1" max="50" defaultValue={mineNum} onChange={() => { mineNumOnChange(); checkError();}} />
-                            <p className="controlNum" style={error? {color: 'darkred'}:{}}>{mineNum}</p>
+                            <input id="minenum-slider" type="range" step="1" min="1" max="50" defaultValue={mineNum} onChange={() => { checkError(); mineNumOnChange(); }} />
+                            <p className="controlNum" style={error? {color: 'rgb(136, 0, 0)'}:{}}>{mineNum}</p>
                         </div>
                         <div className="controlCol">
-                            <div className="controlTitle">Board Size (nxn)</div>
-                            <input id="boardsize-slider" type="range" min="1" max="20" defaultValue={boardSize} onChange={() => { boardSizeOnChange(); checkError();}} />
-                            <p className="controlNum" style={error? {color: 'darkred'}:{}}>{boardSize}</p>
+                            <div className="controlTitle">Board Size (n×n)</div>
+                            <input id="boardsize-slider" type="range" step="1" min="1" max="20" defaultValue={boardSize} onChange={() => { checkError(); boardSizeOnChange();}} />
+                            <p className="controlNum" style={error? {color: 'rgb(136, 0, 0)'}:{}}>{boardSize}</p>
                         </div>
                     </div>
                 </div>
