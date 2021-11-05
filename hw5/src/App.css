@@ -1,38 +1,21 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.calc-keypad-btn{
+  @apply w-20 h-20 bg-gray-400 text-white text-4xl font-light py-2 px-4 rounded-xl hover:bg-indigo-800 hover:shadow-xl transition-all duration-200 ease-in-out;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.num-display-container{
+  @apply w-80 rounded-2xl shadow-lg py-2 px-4 bg-gray-200 m-4 justify-self-center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.num-display-text{
+  @apply text-5xl  text-gray-700 font-extralight;
+}
+.keypad-container{
+  @apply p-5 w-min items-center justify-center shadow-2xl;
+}
+.App{
+  display: "flex";
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  text-align: center;
 }
