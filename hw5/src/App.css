@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.App {
+  text-align: center;
+}
+.calc-keypad-btn{
+  @apply w-20 h-20 bg-gray-400 text-white text-4xl font-light py-2 px-4 rounded-xl hover:bg-indigo-800 hover:shadow-xl transition-all duration-100;
+}
+.mem-keypad-btn{
+  @apply w-20 h-20 bg-blue-400 text-white text-4xl font-light py-2 px-4 rounded-xl hover:shadow-xl transition-all duration-100;
+}
+.op-keypad-btn{
+  @apply w-20 h-20 bg-indigo-300 text-white text-4xl font-light py-2 px-4 rounded-xl hover:bg-indigo-800 hover:shadow-xl transition-all duration-100;
+}
+.num-display-container{
+  @apply rounded-2xl shadow-lg py-2 px-4 bg-gray-200 mt-2 m-4 justify-self-center;
+  min-width: 50vw;
+  max-width: 80vw;
+
+}
+.error-container{
+  @apply w-80 rounded-2xl shadow-lg py-2 bg-red-200 text-red-800 mt-4 justify-self-center;
+}
+.num-display-text{
+  @apply text-5xl  text-gray-700 font-extralight;
+  max-width: 70vw;
+}
+.keypad-container{
+  @apply p-5 w-min items-center justify-center shadow-2xl;
+}
+.App{
+  display: "flex";
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
