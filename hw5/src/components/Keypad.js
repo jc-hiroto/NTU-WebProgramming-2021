@@ -103,7 +103,7 @@ function Keypad(props){
             <div className="grid grid-cols-1">
             {operator_keys.map((key) => {
                 return (
-                    <button className="calc-keypad-btn justify-center m-1" id={key.id} onClick={handle_num_keypress}>
+                    <button className="op-keypad-btn justify-center m-1" id={key.id} onClick={handle_num_keypress}>
                         <i className={key.icon + " self-center"} id={key.id}></i>
                     </button>
 
@@ -118,7 +118,7 @@ function Keypad(props){
             return (
                 <div className="flex flex-row mt-1 mb-1 h-10 w-40 bg-indigo-100 hover:bg-indigo-300 rounded-xl justify-center self-center cursor-pointer" key={i} onClick={() => handleRecall(num)}>
                     <i className="fas fa-history fa-lg self-center"></i>
-                    <p className="self-center font-bold text-xl text-indigo-800 ml-2">{num}</p>
+                    <p className="self-center font-bold text-xl text-indigo-800 ml-2" id={num}>{num.length > 8 ? num.slice(0,7)+"...":num}</p>
                 </div>
             )
         })
@@ -127,10 +127,10 @@ function Keypad(props){
         <div className="flex flex-row justify-center">
             <div className="flex flex-col justify-start">
                 <div className="flex flex-row justify-center self-center mr-1 ml-1">
-                    <button className="calc-keypad-btn justify-center m-1" id="btn-save" onClick={props.handleSaveNum}>
+                    <button className="hover:bg-blue-800 mem-keypad-btn justify-center m-1" id="btn-save" onClick={props.handleSaveNum}>
                         <i className="fas fa-file-import self-center"></i>
                     </button>
-                    <button className="calc-keypad-btn justify-center m-1" id="btn-clear-mem" onClick={props.handleClearMem}>
+                    <button className="hover:bg-red-800 mem-keypad-btn justify-center m-1" id="btn-clear-mem" onClick={props.handleClearMem}>
                         <i className="fas fa-eraser self-center"></i>
                     </button>
                 </div>

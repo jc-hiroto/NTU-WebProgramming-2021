@@ -16,12 +16,12 @@ function NumDisplay(props) {
         <div className="grid">
             {render_error_msg()}
             <div className="flex flex-row justify-center">
-                <i className="fas fa-undo self-center fa-lg hover:text-indigo-600 hover:scale-105" onClick={props.handleUndo}/>
+                <div className="text-gray-600 fas fa-undo fa-2x self-center cursor-pointer hover:text-indigo-600" onClick={props.handleUndo}/>
                 <div className="num-display-container flex flex-col">
                     <p className="num-hist-display-text">{props.operation + " ="}</p>
                     <p className="num-display-text">{props.error === "" ? props.dispNum : "ERR"}</p>
                 </div>
-                <i className="fas fa-backspace self-center fa-lg hover:text-indigo-600 hover:scale-105" onClick={props.handleBackspace}/>
+                <i className="text-gray-600 fas fa-backspace self-center fa-2x cursor-pointer hover:text-indigo-600" onClick={props.handleBackspace}/>
             </div>
         </div>
     );
