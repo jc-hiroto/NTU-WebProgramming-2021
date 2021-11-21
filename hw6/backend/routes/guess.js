@@ -14,7 +14,6 @@ router.post('/start', (req, res) => {
 });
 router.get('/guess', (req, res) => {
     const number = getNumber();
-    console.log(number);
     const guess = parseInt(req.query.number, 10);
     if (!guess || guess < 0 || guess > 100) {
         res.status(400).send({
