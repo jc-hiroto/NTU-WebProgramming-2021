@@ -14,33 +14,46 @@ const connect_mongo = () => {
     });
 };
 
-const clearDB = () => {
-    ScoreCard.deleteMany({}, (err) => {
-        if (err) {
-            console.log(err);
-            return err;
-        }
-    });
+const clearDB = async() => {
+    try{
+        await ScoreCard.deleteMany({});
+        console.log('DB cleared');
+    }catch(err){
+        throw new Error("Database deletion failed. Trace: "+err.toString());
+    }
 };
 
-const addScoreCard = (scoreCard) => {
-    const newScoreCard = new ScoreCard(scoreCard);
-    newScoreCard.save((err) => {
-        if (err) {
-            console.log(err);
-            return err;
-        } else {
-            return newScoreCard;
-        }
-    });
+const addScoreCard = async(scoreCard) => {
+    try{
+        await ScoreCard.findOneAndUpdate({ name: scoreCard.name, subject: scoreCard.subject }, {$set:{score: scoreCard.score}}, { upsert: true });
+        return true;
+    }catch(err){
+        throw new Error("Database insertion failed. Trace: "+err.toString());
+    }
 };
 
-const queryByName = (name) => {
-    return ScoreCard.find({ name: name });
+const queryByName = async(name) => {
+    try{
+        return await ScoreCard.find({ name: name });
+    }catch(err){
+        throw new Error("Database query failed. Trace: "+err.toString());
+    }
 };
 
-const queryBySubject = (subject) => {
-    return ScoreCard.find({ subject: subject });
+const queryBySubject = async(subject) => {
+    try{
+        return await ScoreCard.find({ subject: subject });
+    }catch(err){
+        throw new Error("Database query failed. Trace: "+err.toString());
+    }
 };
 
-export { connect_mongo, addScoreCard, queryByName, queryBySubject, clearDB };
+const queryByNameAndSubject = async(name, subject) => {
+    try{
+        return await ScoreCard.find({ name: name, subject: subject });
+    }catch(err){
+        throw new Error("Database query failed. Trace: "+err.toString());
+    }
+};
+
+export { connect_mongo, addScoreCard, queryByName, queryBySubject, queryByNameAndSubject, clearDB };
