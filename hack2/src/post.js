@@ -35,8 +35,11 @@ function Post(props) {
   }
 
   // TODO 3-(2): fetch the full information of a post from database
-  useEffect(async() => {
-    await getPostDetail()
+  useEffect(() => {
+    async function fetchData() {
+      await getPostDetail();
+    }
+    fetchData();
   }, [])
   
   return (
