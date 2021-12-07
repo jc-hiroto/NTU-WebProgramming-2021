@@ -23,9 +23,7 @@ const dboptions = {
 
 // TODO 1: connect to your mongodb here
 const connect_mongo = () => {
-  mongoose.connect(process.env.MONGO_URL, {
-               useNewUrlParser: true,
-               useUnifiedTopology: true });
+  mongoose.connect(process.env.MONGO_URL, dboptions);
   const db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', () => {
