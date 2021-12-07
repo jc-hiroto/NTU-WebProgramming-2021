@@ -15,10 +15,10 @@ function Post(props) {
   const getPostDetail = async() => {
     const detail = await instance.get(`/postDetail`, {
       params: {
-        postId: pid
+        pid: pid
       }
     })
-    setData(detail.data.data[0])
+    setData(detail.data.post)
   }
 
   // TODO 5-(2): complete delPost function to delete a post from database
@@ -26,7 +26,7 @@ function Post(props) {
     console.log('delete post')
     await instance.delete(`/post`, {
       params: {
-        postId: pid
+        pid: pid
       }
     })
     setTimeout(() => {

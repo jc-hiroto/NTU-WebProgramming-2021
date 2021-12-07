@@ -27,17 +27,17 @@ router.get('/allPosts', async(req, res) => {
 
 // TODO 3-(1): create the 2nd API (/api/postDetail)
 router.get('/postDetail', async(req, res) => {
-    const postId = req.query.postId;
-    await Post.find({"postId": postId}, (err, post) => {
+    const postId = req.query.pid;
+    await Post.findOne({"postId": postId}, (err, post) => {
         if (err) {
             res.status(403).json({
                 message: "error",
-                data: null
+                post: null
             })
         } else {
             res.status(200).json({
                 message: 'success',
-                data: post
+                post: post
             })
         }
     });
@@ -70,7 +70,7 @@ router.post('/newPost', async(req, res) => {
 // TODO 5-(1): create the 4th API (/api/post)
 // delete one post by postId
 router.delete('/post', async(req, res) => {
-    const postId = req.query.postId;
+    const postId = req.query.pid;
     await Post.deleteOne({"postId": postId}, (err, post) => {
         if (err) {
             res.status(403).json({
