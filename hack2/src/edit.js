@@ -11,12 +11,21 @@ function Edit(props) {
 
   // TODO 4-(2): complete handleSubmit function to create a new post and save it to database 
   const handleSubmit = async() => {
-    const resp = await instance.post('/newPost', {
-      title: title,
-      content: content,
-      postId: uuidv4(),
-      timestamp: Date.now()
-    });
+    const payload_title = title.trim()
+    const payload_content = content.trim()
+    if (payload_title === '' || payload_content === '') {
+      return
+    }
+    try{
+      await instance.post('/newPost', {
+        title: payload_title,
+        content: payload_content,
+        postId: uuidv4(),
+        timestamp: Date.now()
+      });
+    }catch(err){
+      alert(err)
+    }
     setTimeout(() => {
       props.navigate(-1);
     }, 300)

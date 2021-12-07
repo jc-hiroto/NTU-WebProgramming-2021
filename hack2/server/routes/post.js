@@ -11,7 +11,7 @@ router.get('/allPosts', async(req, res) => {
         posts.sort((a, b) => {
             return moment(b.timestamp).diff(moment(a.timestamp))
         })
-        if (err) {
+        if (err || !posts || posts.length === 0) {
             res.status(403).json({
                 message: "error",
                 data: null
@@ -29,7 +29,7 @@ router.get('/allPosts', async(req, res) => {
 router.get('/postDetail', async(req, res) => {
     const postId = req.query.pid;
     await Post.findOne({"postId": postId}).exec(function(err, post){
-        if (err) {
+        if (err || !post) {
             res.status(403).json({
                 message: "error",
                 post: null
@@ -55,12 +55,11 @@ router.post('/newPost', async(req, res) => {
         if (err) {
             res.status(403).json({
                 message: "error",
-                data: null
+                post: null
             })
         } else {
             res.status(200).json({
-                message: 'success',
-                data: post
+                message: 'success'
             })
         }
     });
@@ -74,6 +73,7 @@ router.delete('/post', async(req, res) => {
         if (err) {
             res.status(403).json({
                 message: "error",
+                post: null
             })
         } else {
             res.status(200).json({
