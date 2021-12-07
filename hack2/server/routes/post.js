@@ -6,7 +6,7 @@ const router = express.Router()
 
 // TODO 2-(1): create the 1st API (/api/allPosts)
 router.get('/allPosts', async(req, res) => {
-    await Post.find({}, (err, posts) => {
+    await Post.find({}).exec(function(err, posts){
         // sort by timestamp
         posts.sort((a, b) => {
             return moment(b.timestamp).diff(moment(a.timestamp))
@@ -28,7 +28,7 @@ router.get('/allPosts', async(req, res) => {
 // TODO 3-(1): create the 2nd API (/api/postDetail)
 router.get('/postDetail', async(req, res) => {
     const postId = req.query.pid;
-    await Post.findOne({"postId": postId}, (err, post) => {
+    await Post.findOne({"postId": postId}).exec(function(err, post){
         if (err) {
             res.status(403).json({
                 message: "error",
@@ -45,14 +45,13 @@ router.get('/postDetail', async(req, res) => {
 
 // TODO 4-(1): create the 3rd API (/api/newPost)
 router.post('/newPost', async(req, res) => {
-    console.log(req.body);
     const post = new Post({
         postId: req.body.postId,
         title: req.body.title,
         content: req.body.content,
         timestamp: req.body.timestamp
     });
-    await post.save((err, post) => {
+    await post.save((err, post) =>{
         if (err) {
             res.status(403).json({
                 message: "error",
@@ -71,7 +70,7 @@ router.post('/newPost', async(req, res) => {
 // delete one post by postId
 router.delete('/post', async(req, res) => {
     const postId = req.query.pid;
-    await Post.deleteOne({"postId": postId}, (err, post) => {
+    await Post.deleteOne({"postId": postId}).exec(function(err, post){
         if (err) {
             res.status(403).json({
                 message: "error",
