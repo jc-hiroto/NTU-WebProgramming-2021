@@ -23,7 +23,6 @@ function Post(props) {
 
   // TODO 5-(2): complete delPost function to delete a post from database
   const delPost = async() => {
-    console.log('delete post')
     await instance.delete(`/post`, {
       params: {
         pid: pid
