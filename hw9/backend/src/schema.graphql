@@ -1,7 +1,7 @@
 type Query {
   user(query: String): User!
   messages(query: String): [Message!]!
-  chatboxs(query: String): [Chatbox!]!
+  chatboxs(query: String): [ChatBox!]!
 }
 
 type Mutation {
