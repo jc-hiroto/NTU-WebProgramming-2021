@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 //import './App.css'
 import styled from "styled-components";
 import {ChatRoom} from "./ChatRoom";
-import useChat from "../Hooks/useChat";
 import SignIn from "./SignIn";
 
 const Wrapper = styled.div`
@@ -18,7 +17,6 @@ const LOCALSTORAGE_KEY = "save-me";
 
 function App() {
   const savedme = localStorage.getItem(LOCALSTORAGE_KEY);
-  const { status, messages, sendData, clearMessages } = useChat();
   const [me, setMe] = useState(savedme || "");
   const [signedIn, setSignedIn] = useState(false);
   useEffect(() => {
@@ -31,7 +29,7 @@ function App() {
     <Wrapper>
       {
         signedIn ? 
-        <ChatRoom me={me} status={status} messages={messages} clearMessages={clearMessages} sendData={sendData}/>
+        <ChatRoom me={me}/>
         :
         <SignIn me={me} setSignedIn={setSignedIn} setMe={setMe}/>
       }

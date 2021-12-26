@@ -6,4 +6,4 @@ const ChatBox = {
   },
 };
 
-export default ChatBox;
+export {ChatBox};

@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import Title from "../Components/Title";
 import Message from "../Components/Message";
 import displayStatus from "../Components/DisplayStatus";
+import useChatBox from "../Hooks/useChatBox";
 
 const ChatRoom = ({me, status, messages, clearMessages, sendData}) => {
+  const { chatBoxes, createChatBox, removeChatBox } = useChatBox();
   const [body, setBody] = useState("");
   const sendMessage = (payload) => {
     sendData(["input", payload]);

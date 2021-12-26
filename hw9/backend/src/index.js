@@ -1,12 +1,19 @@
 import { GraphQLServer, PubSub } from 'graphql-yoga';
-import db from './mongo';
+import { Query, Mutation, Subscription, ChatBox, Message, User } from './resolvers/';
+import mongo from './mongo';
+import * as db from './models';
 
+mongo();
 const pubsub = new PubSub();
-
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers: {
-  
+    Query,
+    Mutation,
+    Subscription,
+    ChatBox,
+    Message,
+    User,
   },
   context: {
     db,

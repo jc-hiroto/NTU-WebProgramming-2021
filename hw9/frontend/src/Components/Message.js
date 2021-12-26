@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Message = styled.div`
+const MessageStyle = styled.div`
   width: 100%;
   height: 300px;
   background: #eeeeee52;
@@ -9,5 +9,14 @@ const Message = styled.div`
   padding: 20px;
   overflow: auto;
 `;
+
+const Message = ({me, name, msg}) => {
+  return (
+    <MessageStyle>
+      <p>{name}</p>
+      <p>{msg}</p>
+    </MessageStyle>
+  );
+};
 
 export default Message;
