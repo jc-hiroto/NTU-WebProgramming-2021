@@ -25,8 +25,8 @@ const Mutation = {
     return chatBox;
   },
 
-  async createMessage(parent, {from, to, body}, {db, pubsub}, info){
-    const { chatBox, sender } = await checkMessage(db, from, to, body, "createMessage");
+  async createMessage(parent, {from, to, message}, {db, pubsub}, info){
+    const { chatBox, sender } = await checkMessage(db, from, to, message, "createMessage");
     if (!chatBox){
       throw new Error('Chatbox not exist for createMessage.');
     }
@@ -34,16 +34,17 @@ const Mutation = {
       throw new Error('User not exist for createMessage.');
     }
     const chatBoxName = makeName(from, to);
-    const message = await newMessage(db, sender, body);
-    chatBox.messages.push(message);
+    console.log(sender, message);
+    const msg = await newMessage(db, sender, message);
+    chatBox.messages.push(msg);
     await chatBox.save();
     pubsub.publish(`chatBox_${chatBoxName}`, {
       chatBox: {
         mutation: 'CREATED',
-        data: message
+        data: msg
       }
     });
-    return message;
+    return msg;
   }
 };
 

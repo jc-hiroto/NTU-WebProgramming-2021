@@ -1,21 +1,11 @@
-import styled from 'styled-components';
-
-const MessageStyle = styled.div`
-  width: 100%;
-  height: 300px;
-  background: #eeeeee52;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
-  overflow: auto;
-`;
-
-const Message = ({me, name, msg}) => {
+import { Tag, Row, Col, Typography } from "antd";
+const { Text } = Typography;
+const Message = ({me, name, body}) => {
   return (
-    <MessageStyle>
-      <p>{name}</p>
-      <p>{msg}</p>
-    </MessageStyle>
+    <Row justify={ name === me ? "end" : "start"} align="middle" >
+        <Tag color={ name === me ? "#108ee9" : "blue"}>{name}</Tag>
+        <Text>{body}</Text>
+    </Row>
   );
 };
 

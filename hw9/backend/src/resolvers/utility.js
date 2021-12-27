@@ -2,7 +2,7 @@ const checkUser = (db, name, errorFunc) => {
   if (!name){
     throw new Error(`${errorFunc}: Missing user name.`);
   }
-  return db.UserModal.findOne({name});
+  return db.UserModel.findOne({name});
 };
 
 const checkChatBox = (db, name, errorFunc) => {
@@ -22,15 +22,16 @@ const checkMessage = async (db, from, to, message, errorFunc) => {
 };
 
 const newUser = (db, name) => {
-  return new db.UserModal({name}).save();
+  return new db.UserModel({name}).save();
 };
 
 const newChatBox = (db, name) => {
-  return new db.ChatBoxModal({name}).save();
+  return new db.ChatBoxModel({name}).save();
 }
 
 const newMessage = (db, sender, body) => {
-  return new db.MessageModal({sender, body}).save();
+  console.log(body);
+  return new db.MessageModel({sender, body}).save();
 };
 
 const makeName = (name1, name2) => {
