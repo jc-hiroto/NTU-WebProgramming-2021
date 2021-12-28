@@ -3,6 +3,7 @@ const Mutation = {
    * Add a task
    */
   createTask: async (parent, { input }, { taskModel, pubSub }) => {
+    console.log('createTask', input);
     const newTask = new taskModel(input);
     await newTask.save();
     pubSub.publish("TASK_CREATED", {
@@ -32,8 +33,13 @@ const Mutation = {
   /**
    * Delete a task by id
    */
-  // TODO 5.2 Add a deleteTask function to resolve deleteTask
-  // TODO 6.3 Add Subscription
+  deleteTask: async (parent, { id }, { taskModel, pubSub }) => {
+    const task = await taskModel.findOneAndDelete({ id });
+    pubSub.publish("TASK_DELETED", {
+      taskDeleted: id,
+    });
+    return id;
+  },
 };
 
 export default Mutation;

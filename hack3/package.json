@@ -11,6 +11,6 @@
   "scripts": {
     "frontend": "cd ./frontend && npm start",
     "backend": "cd ./backend && npm start",
-    "test": "npx cypress run --browser=firefox --spec cypress/integration/*.spec.js"
+    "test": "npx cypress run --browser=firefox:dev --spec cypress/integration/*.spec.js"
   }
 }

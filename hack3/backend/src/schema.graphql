@@ -30,7 +30,7 @@ type Mutation {
   # Update a task's status
   updateTask(id: ID!, status: Status!): Task
   # Delete a task
-  # TODO 5.1 Add the deleteTask function
+  deleteTask(id: ID!): ID!
 }
 
 # Input for creating a task
@@ -49,5 +49,5 @@ type Subscription {
   # Notify a task updated
   taskUpdated: Task!
   # Notify a task deleted
-  # TODO 6.1 Add the taskDeleted subscription
+  taskDeleted: ID!
 }
