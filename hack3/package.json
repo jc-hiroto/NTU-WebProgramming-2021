@@ -6,11 +6,11 @@
   "devDependencies": {
     "cypress": "^9.2.0",
     "dotenv-defaults": "^3.0.0",
-    "mongoose": "^6.1.3"
+    "mongoose": "^6.1.4"
   },
   "scripts": {
-    "frontend": "cd ./frontend && npm start",
-    "backend": "cd ./backend && npm start",
-    "test": "npx cypress run --browser=firefox --spec cypress/integration/*.spec.js"
+    "frontend": "cd ./frontend && yarn start",
+    "backend": "cd ./backend && yarn start",
+    "test": "npx cypress run --browser=firefox:dev --spec cypress/integration/*.spec.js"
   }
 }
