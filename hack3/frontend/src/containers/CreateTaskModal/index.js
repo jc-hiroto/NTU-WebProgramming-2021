@@ -14,7 +14,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { TODO } from "../../constants";
 // graphql
 import { useMutation } from "@apollo/react-hooks";
-// TODO 4.2 Uncomment the following line
 import { GET_TASKS_QUERY, CREATE_TASK_MUTATION } from "../../graphql";
 
 const TITLE = "title";
@@ -40,14 +39,12 @@ export default function CreateTaskModal({ open, handleCloseCreateTaskModal }) {
     });
   };
 
-  // TODO 4.2 Uncomment the following lines
   const [createTask] = useMutation(CREATE_TASK_MUTATION);
   const handleCreate = () => {
     if (Object.values(formData).some((v) => !v)) {
       setDisplayError(true);
       return;
     }
-    // TODO 4.2 Uncomment the following lines
     createTask({
       variables: {
         input: {
